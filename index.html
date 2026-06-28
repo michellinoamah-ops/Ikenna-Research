@@ -362,11 +362,23 @@ footer{background:var(--navy);padding:2rem 1.5rem;text-align:center;}
 
 /* ── SLIDESHOW ── */
 .slideshow{position:relative;width:100%;overflow:hidden;background:#111;}
-.slideshow-about{height:clamp(240px,35vw,460px);}
-.slideshow-contact{height:clamp(220px,32vw,420px);}
+.slideshow-about{height:clamp(260px,40vw,520px);}
+@media (min-width:1024px){ .slideshow-about{ height:480px; } }
+@media (min-width:1400px){ .slideshow-about{ height:540px; } }
+.slideshow-contact{height:clamp(240px,35vw,460px);}
+@media (min-width:1200px){ .slideshow-contact{ height:480px; } }
+@media (min-width:1024px){ .slideshow-contact{ height:380px; } }
 /* track holds all slides side by side, slides horizontally */
 .slide-track{display:flex;height:100%;transition:transform 0.55s cubic-bezier(0.4,0,0.2,1);will-change:transform;}
-.slide{flex:0 0 100%;height:100%;background-size:cover;background-position:center;}
+.slide{flex:0 0 100%;height:100%;background-size:cover;background-position:center center;}
+/* About slideshow: Uzoka is seated, face in upper portion — pull image up */
+#ss-about .slide{background-position:center 18%;}
+/* Contact slideshow: selfie photos — face is center, keep centered */
+#ss-contact .slide{background-position:center 25%;}
+/* About slideshow — position top to show faces clearly */
+#ss-about .slide { background-position: center 15%; }
+/* Contact slideshow — center works fine for those images */
+#ss-contact .slide { background-position: center center; }
 /* dot indicators */
 .slide-dots{display:flex;justify-content:center;gap:8px;padding:10px 0;background:var(--navy);}
 .slide-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);cursor:pointer;border:none;transition:background 0.3s;}
@@ -592,9 +604,10 @@ table { display: block; overflow-x: auto; }
   background-size: cover;
   background-position: center center;
 }
-/* Portrait phones: crop from center-top to show more of subject */
+/* Portrait phones: keep hero subject centered */
 @media (max-width: 480px) and (orientation: portrait) {
-  .hero-slide { background-position: center 20%; }
+  .hero-slide { background-position: center 25%; }
+  #ss-about .slide { background-position: center 10%; }
 }
 /* Landscape phones: keep center */
 @media (max-height: 500px) and (orientation: landscape) {
@@ -602,9 +615,7 @@ table { display: block; overflow-x: auto; }
   .hero-name { font-size: clamp(2.5rem, 10vh, 5rem); }
 }
 
-/* slideshow heights now use clamp() above */
-
-/* ── ADMIN date input — full width on mobile ── */
+/* slideshow heights handled in base CSS *//* ── ADMIN date input — full width on mobile ── */
 @media (max-width: 480px) {
   .admin-date { width: 100%; }
   .pend-actions { flex-direction: column; align-items: stretch; }
